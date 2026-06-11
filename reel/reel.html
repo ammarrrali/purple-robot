@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:540px; height:960px; overflow:hidden; background:#030303; }
+  #stage { position:relative; width:540px; height:960px; overflow:hidden;
+           font-family:"Helvetica Neue", Arial, sans-serif; color:#fff; }
+  .mono { font-family:"SF Mono", Menlo, monospace; }
+  .scene { position:absolute; inset:0; opacity:0; }
+
+  /* background grid used in text scenes */
+  .grid-bg { position:absolute; inset:0;
+    background-image:linear-gradient(rgba(168,85,247,.07) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(168,85,247,.07) 1px, transparent 1px);
+    background-size:44px 44px; }
+  .vignette { position:absolute; inset:0;
+    background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.75) 100%); }
+  .frame-border { position:absolute; inset:14px; border:1px solid rgba(255,255,255,.08); z-index:40; pointer-events:none; }
+  .glow { position:absolute; width:700px; height:700px; border-radius:50%;
+    background:radial-gradient(circle, rgba(124,58,237,.32) 0%, transparent 65%); filter:blur(10px); }
+
+  .kicker { font-size:11px; letter-spacing:.45em; text-transform:uppercase; color:#a855f7; }
+  .big { font-weight:900; text-transform:uppercase; font-style:italic; letter-spacing:-.02em; line-height:.92; }
+
+  img.shot { display:block; }
+
+  /* ---------- SCENE 1 : HOOK ---------- */
+  #s1 { animation: sceneFade 2.6s linear 0s both; }
+  #s1 .glow { top:120px; left:-80px; }
+  #s1 .inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 44px; }
+  #s1 .kicker { animation: rise .6s ease-out .15s both; margin-bottom:22px; }
+  #s1 h1 { font-size:64px; }
+  #s1 h1 .l1 { display:block; animation: rise .7s cubic-bezier(.2,.8,.2,1) .3s both; }
+  #s1 h1 .l2 { display:block; color:#a855f7; animation: rise .7s cubic-bezier(.2,.8,.2,1) .5s both; }
+  #s1 h1 .l3 { display:block; animation: rise .7s cubic-bezier(.2,.8,.2,1) .7s both; }
+  #s1 .sub { margin-top:26px; font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:#9ca3af;
+             animation: fadeIn .6s ease-out 1.2s both; }
+
+  /* ---------- SCENE 2 : HERO SHOT ---------- */
+  #s2 { animation: sceneFade 3.6s linear 2.5s both; background:#000; }
+  #s2 .shotwrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+                  animation: kenburns 3.6s linear 2.5s both; }
+  #s2 img { height:115%; }
+  #s2 .caption { position:absolute; bottom:90px; left:0; right:0; text-align:center; z-index:5;
+                 animation: rise .7s ease-out 3.1s both; }
+  #s2 .caption .kicker { margin-bottom:10px; }
+  #s2 .caption .big { font-size:34px; }
+  #s2 .shade { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 40%); z-index:4; }
+
+  /* ---------- SCENE 3 : SERVICES ---------- */
+  #s3 { animation: sceneFade 3.6s linear 6.0s both; }
+  #s3 .glow { top:300px; right:-200px; left:auto; }
+  #s3 .inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 44px; }
+  #s3 .kicker { margin-bottom:30px; animation: rise .5s ease-out 6.3s both; }
+  #s3 .svc { display:flex; align-items:baseline; gap:14px; margin-bottom:26px; }
+  #s3 .svc .num { font-size:12px; color:#7c3aed; }
+  #s3 .svc .big { font-size:42px; }
+  #s3 .svc:nth-child(2) { animation: slideL .6s cubic-bezier(.2,.8,.2,1) 6.5s both; }
+  #s3 .svc:nth-child(3) { animation: slideL .6s cubic-bezier(.2,.8,.2,1) 6.9s both; }
+  #s3 .svc:nth-child(4) { animation: slideL .6s cubic-bezier(.2,.8,.2,1) 7.3s both; }
+  #s3 .svc:nth-child(5) { animation: slideL .6s cubic-bezier(.2,.8,.2,1) 7.7s both; }
+  #s3 .svc:nth-child(5) .big { color:#a855f7; }
+  #s3 .tail { margin-top:14px; font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#9ca3af;
+              animation: fadeIn .6s ease-out 8.4s both; }
+
+  /* ---------- SCENE 4 : PROOF (angled shots) ---------- */
+  #s4 { animation: sceneFade 3.4s linear 9.6s both; }
+  #s4 .cards { position:absolute; inset:0; perspective:1200px; }
+  #s4 .card { position:absolute; width:620px; border-radius:14px; overflow:hidden;
+              border:1px solid rgba(255,255,255,.14); box-shadow:0 40px 80px rgba(0,0,0,.7); }
+  #s4 .card img { width:100%; }
+  #s4 .c1 { top:150px; left:-60px; transform:rotateY(18deg) rotateX(4deg) rotateZ(-4deg);
+            animation: driftR 3.4s linear 9.6s both; }
+  #s4 .c2 { top:520px; right:-90px; transform:rotateY(-16deg) rotateZ(3deg);
+            animation: driftL 3.4s linear 9.6s both; }
+  #s4 .caption { position:absolute; bottom:110px; left:44px; z-index:6;
+                 animation: rise .7s ease-out 10.2s both; }
+  #s4 .caption .big { font-size:44px; }
+  #s4 .caption .kicker { margin-bottom:10px; }
+  #s4 .shade { position:absolute; inset:0; background:linear-gradient(to top, rgba(3,3,3,.95) 5%, transparent 45%); z-index:5; }
+
+  /* ---------- SCENE 5 : KARACHI ---------- */
+  #s5 { animation: sceneFade 2.6s linear 13.0s both; }
+  #s5 .bgshot { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+                filter:blur(6px) brightness(.45); animation: kenburns 2.6s linear 13s both; }
+  #s5 .bgshot img { height:115%; }
+  #s5 .inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 44px; z-index:5; }
+  #s5 .big { font-size:58px; }
+  #s5 .l1 { display:block; animation: rise .7s cubic-bezier(.2,.8,.2,1) 13.3s both; }
+  #s5 .l2 { display:block; color:#a855f7; animation: rise .7s cubic-bezier(.2,.8,.2,1) 13.6s both; }
+  #s5 .tail { margin-top:24px; font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#d1d5db;
+              animation: fadeIn .6s ease-out 14.2s both; }
+
+  /* ---------- SCENE 6 : CTA ---------- */
+  #s6 { animation: sceneFadeEnd 3.0s linear 15.6s both; }
+  #s6 .glow { top:330px; left:-80px; }
+  #s6 .inner { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 40px; }
+  #s6 .logo { font-size:58px; animation: pop .7s cubic-bezier(.2,.8,.2,1) 15.9s both; }
+  #s6 .logo .labs { color:transparent; background:linear-gradient(to top,#4b5563,#fff); -webkit-background-clip:text; background-clip:text; }
+  #s6 .pill { margin-top:36px; padding:16px 34px; border-radius:999px; background:#7c3aed; font-weight:900;
+              text-transform:uppercase; letter-spacing:.2em; font-size:14px;
+              animation: pop .6s cubic-bezier(.2,.8,.2,1) 16.4s both; }
+  #s6 .links { margin-top:30px; font-size:13px; letter-spacing:.25em; text-transform:uppercase; color:#d1d5db;
+               animation: fadeIn .6s ease-out 16.8s both; }
+  #s6 .links div { margin-bottom:12px; }
+  #s6 .links .hl { color:#a855f7; font-weight:700; }
+
+  /* ---------- KEYFRAMES ---------- */
+  @keyframes sceneFade { 0%{opacity:0} 6%{opacity:1} 94%{opacity:1} 100%{opacity:0} }
+  @keyframes sceneFadeEnd { 0%{opacity:0} 8%{opacity:1} 100%{opacity:1} }
+  @keyframes rise { from{opacity:0; transform:translateY(46px)} to{opacity:1; transform:translateY(0)} }
+  @keyframes slideL { from{opacity:0; transform:translateX(-60px)} to{opacity:1; transform:translateX(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes pop { from{opacity:0; transform:scale(.8)} to{opacity:1; transform:scale(1)} }
+  @keyframes kenburns { from{transform:scale(1)} to{transform:scale(1.12)} }
+  @keyframes driftR { from{transform:rotateY(18deg) rotateX(4deg) rotateZ(-4deg) translateX(0)}
+                      to{transform:rotateY(18deg) rotateX(4deg) rotateZ(-4deg) translateX(50px)} }
+  @keyframes driftL { from{transform:rotateY(-16deg) rotateZ(3deg) translateX(0)}
+                      to{transform:rotateY(-16deg) rotateZ(3deg) translateX(-50px)} }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="frame-border"></div>
+
+  <!-- SCENE 1 — HOOK -->
+  <div class="scene" id="s1">
+    <div class="grid-bg"></div><div class="glow"></div><div class="vignette"></div>
+    <div class="inner">
+      <div class="kicker mono">// transmission_incoming</div>
+      <h1 class="big"><span class="l1">Your website</span><span class="l2">is costing you</span><span class="l3">clients.</span></h1>
+      <div class="sub mono">Here's the fix &darr;</div>
+    </div>
+  </div>
+
+  <!-- SCENE 2 — HERO -->
+  <div class="scene" id="s2">
+    <div class="shotwrap"><img class="shot" id="heroVid" src="hero/h000.png"></div>
+    <div class="shade"></div>
+    <div class="caption">
+      <div class="kicker mono">Software_House // Karachi</div>
+      <div class="big">Codeeee Labs</div>
+    </div>
+  </div>
+
+  <!-- SCENE 3 — SERVICES -->
+  <div class="scene" id="s3">
+    <div class="grid-bg"></div><div class="glow"></div><div class="vignette"></div>
+    <div class="inner">
+      <div class="kicker mono">// core_capabilities</div>
+      <div class="svc"><span class="num mono">01</span><span class="big">Web Apps</span></div>
+      <div class="svc"><span class="num mono">02</span><span class="big">AI Automation</span></div>
+      <div class="svc"><span class="num mono">03</span><span class="big">Mobile Apps</span></div>
+      <div class="svc"><span class="num mono">04</span><span class="big">Custom CRMs</span></div>
+      <div class="tail mono">Engineered. Not templated.</div>
+    </div>
+  </div>
+
+  <!-- SCENE 4 — PROOF -->
+  <div class="scene" id="s4">
+    <div class="cards">
+      <div class="card c1"><img src="shots/services.png"></div>
+      <div class="card c2"><img src="shots/portfolio.png"></div>
+    </div>
+    <div class="shade"></div>
+    <div class="caption">
+      <div class="kicker mono">// deployed_logs</div>
+      <div class="big">Real systems.<br>Shipped.</div>
+    </div>
+  </div>
+
+  <!-- SCENE 5 — KARACHI -->
+  <div class="scene" id="s5">
+    <div class="bgshot"><img class="shot" src="shots/home-hero.png"></div>
+    <div class="inner">
+      <div class="big"><span class="l1">Built in Karachi.</span><span class="l2">Shipped worldwide.</span></div>
+      <div class="tail mono">Pakistan's next-gen software house</div>
+    </div>
+  </div>
+
+  <!-- SCENE 6 — CTA -->
+  <div class="scene" id="s6">
+    <div class="grid-bg"></div><div class="glow"></div><div class="vignette"></div>
+    <div class="inner">
+      <div class="big logo">CODEEEE<br><span class="labs">LABS</span></div>
+      <div class="pill">Get a free estimate</div>
+      <div class="links mono">
+        <div class="hl">codeeee.com</div>
+        <div>@codeeeelabs</div>
+        <div>DM <span class="hl">"BUILD"</span> to start</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // pause everything; the capture script drives time
+  window.TOTAL = 18.6; // seconds
+
+  // live hero footage (robot head follows pointer), swapped per frame
+  const HERO_N = 108, HERO_T0 = 2.5, HERO_T1 = 6.1;
+  const heroImg = document.getElementById('heroVid');
+  const heroFrames = [];
+  window.READY = Promise.all(Array.from({ length: HERO_N }, (_, i) => new Promise((res) => {
+    const im = new Image();
+    im.onload = () => res();
+    im.onerror = () => res();
+    im.src = `hero/h${String(i).padStart(3, '0')}.png`;
+    heroFrames.push(im);
+  })));
+
+  function seek(t) {
+    document.getAnimations().forEach(a => { a.pause(); a.currentTime = t * 1000; });
+    const p = (t - HERO_T0) / (HERO_T1 - HERO_T0);
+    const idx = Math.max(0, Math.min(HERO_N - 1, Math.floor(p * HERO_N)));
+    heroImg.src = heroFrames[idx].src;
+  }
+  document.getAnimations().forEach(a => a.pause());
+  window.seek = seek;
+</script>
+</body>
+</html>
