@@ -90,9 +90,9 @@ export default async function CaseStudyPage({
         <header className="mb-16">
           <div className="flex items-center gap-3 text-purple-500 mb-4">
             <span className="text-[10px] font-mono uppercase tracking-widest">{cs.category}</span>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-gray-600">// {cs.region}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-gray-600">{cs.region}</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-[0.95] text-white mb-6">
+          <h1 className="text-3xl md:text-5xl font-display font-semibold tracking-tight leading-[0.95] text-white mb-6">
             {cs.title}
           </h1>
           <p className="text-sm text-gray-400 leading-relaxed border-l-2 border-purple-500/30 pl-4 max-w-2xl">
@@ -125,8 +125,8 @@ export default async function CaseStudyPage({
         {/* Body sections */}
         {cs.sections.map((section) => (
           <section key={section.heading} className="mb-14">
-            <h2 className="text-xl md:text-2xl font-black italic uppercase tracking-tight text-white mb-6">
-              <span className="text-purple-500 mr-2">//</span>
+            <h2 className="text-xl md:text-2xl font-display font-semibold tracking-tight text-white mb-6">
+              
               {section.heading}
             </h2>
             {section.paragraphs.map((p, i) => (
@@ -140,10 +140,10 @@ export default async function CaseStudyPage({
         {/* Testimonial */}
         {cs.testimonial && (
           <figure className="mt-16 rounded-3xl border border-white/10 bg-[#0a0a0a] p-8 md:p-10 relative overflow-hidden">
-            <span className="absolute top-4 left-6 text-7xl font-black italic text-purple-600/20 select-none" aria-hidden>
+            <span className="absolute top-4 left-6 text-7xl font-semibold text-purple-600/20 select-none" aria-hidden>
               &ldquo;
             </span>
-            <blockquote className="relative z-10 text-base md:text-lg text-gray-200 leading-relaxed italic">
+            <blockquote className="relative z-10 text-base md:text-lg text-gray-200 leading-relaxed">
               {cs.testimonial.quote}
             </blockquote>
             <figcaption className="mt-6 text-[10px] font-mono uppercase tracking-widest text-purple-400">
@@ -155,7 +155,7 @@ export default async function CaseStudyPage({
         {/* CTA */}
         <div className="mt-20 rounded-3xl border border-purple-500/30 bg-purple-600/5 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-black italic uppercase tracking-tight text-white mb-2">
+            <h2 className="text-2xl font-display font-semibold tracking-tight text-white mb-2">
               Have a similar mission?
             </h2>
             <p className="text-xs font-mono text-gray-400 uppercase tracking-wider">

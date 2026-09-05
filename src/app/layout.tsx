@@ -1,17 +1,38 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/components/ui/site-footer"; // <--- Import
 import { Analytics } from "@/components/analytics";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Display serif for headings — editorial, characterful, mature.
+const fontDisplay = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Body sans — professional and highly legible (not Inter/Geist).
+const fontSans = IBM_Plex_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Mono — reserved for small technical labels only.
+const fontMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+// Hero wordmark only — the heavy geometric sans the "CODEEEE LABS" lockup uses.
+const fontHero = Geist({
+  variable: "--font-hero",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const SITE_URL = "https://codeeee.com";
@@ -111,7 +132,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${fontSans.variable} ${fontMono.variable} ${fontDisplay.variable} ${fontHero.variable} antialiased`}
       >
         <script
           type="application/ld+json"

@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { Terminal, Mail, Smartphone, Instagram, ArrowUpRight } from 'lucide-react';
 
 const footerLinks = [
-  { title: "Sitemap", items: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Case_Studies", href: "/case-studies" }, { label: "Insights", href: "/blog" }, { label: "Contact", href: "/contact" }] },
-  { title: "Services", items: [{ label: "AI_Automation", href: "/services/ai-automation" }, { label: "Web_Applications", href: "/services/web-applications" }, { label: "Mobile_Apps", href: "/services/mobile-apps" }, { label: "Custom_CRMs", href: "/services/custom-crm" }] },
+  { title: "Sitemap", items: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Case Studies", href: "/case-studies" }, { label: "Insights", href: "/blog" }, { label: "Careers", href: "/careers" }, { label: "Contact", href: "/contact" }] },
+  { title: "Services", items: [{ label: "AI Automation", href: "/services/ai-automation" }, { label: "Web Applications", href: "/services/web-applications" }, { label: "Mobile Apps", href: "/services/mobile-apps" }, { label: "Custom CRMs", href: "/services/custom-crm" }] },
   { title: "Connect", items: [{ label: "Instagram", href: "https://instagram.com/codeeeelabs" }, { label: "info@codeeee.com", href: "mailto:info@codeeee.com" }, { label: "+92 336 1287518", href: "tel:+923361287518" }] },
 ];
 
@@ -24,11 +24,11 @@ export function SiteFooter() {
             <div>
               <div className="flex items-center gap-2 mb-6 text-purple-500">
                 <Terminal size={24} />
-                <span className="font-black text-xl tracking-tighter uppercase italic text-white">CODEEEE</span>
+                <span className="font-display font-semibold text-2xl tracking-tight text-white">Codeeee</span>
               </div>
               <p className="font-mono text-xs text-gray-500 leading-relaxed max-w-sm mb-8">
                 Architecting high-fidelity digital environments for the next generation of web infrastructure. Serving clients across the US, UK, Canada, Europe &amp; the Gulf. <br/>
-                <span className="text-purple-500/60">Est. 2026 // Karachi, PK</span>
+                <span className="text-purple-500/60">Est. 2026 · Karachi, PK</span>
               </p>
             </div>
             
@@ -38,7 +38,7 @@ export function SiteFooter() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
               <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                System_Operational
+                Available for new projects
               </span>
             </div>
           </div>

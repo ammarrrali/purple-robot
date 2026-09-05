@@ -42,7 +42,7 @@ function DisplayCard({
         <span className="relative inline-block rounded-full bg-purple-900/20 ring-1 ring-purple-500/20 p-1.5">
           {icon}
         </span>
-        <p className={cn("text-lg font-black italic uppercase tracking-tighter text-white", titleClassName)}>{title}</p>
+        <p className={cn("text-lg font-display font-semibold tracking-tight text-white", titleClassName)}>{title}</p>
       </div>
       <p className="whitespace-nowrap text-xs font-mono text-gray-400 uppercase tracking-widest">{description}</p>
       <p className="text-[10px] font-mono text-purple-500/60 uppercase">{date}</p>

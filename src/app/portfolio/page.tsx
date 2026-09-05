@@ -100,7 +100,7 @@ const SpotlightCard = ({ project }: { project: typeof projects[0] }) => {
                 <Icon size={14} />
                 <span className="text-[10px] font-mono uppercase tracking-widest">{project.category}</span>
              </div>
-             <h3 className="text-2xl font-black italic uppercase text-white tracking-tight group-hover:text-purple-100 transition-colors">{project.title}</h3>
+             <h3 className="text-2xl font-semibold uppercase text-white tracking-tight group-hover:text-purple-100 transition-colors">{project.title}</h3>
           </div>
           <div className="p-2 rounded-full border border-white/10 bg-white/5 text-gray-400 group-hover:text-white group-hover:border-purple-500/50 transition-colors">
             <ArrowUpRight size={16} />
@@ -136,15 +136,19 @@ export default function PortfolioPage() {
         
         {/* Page Header */}
         <div className="mb-20">
-          <h1 className="text-[12vw] md:text-[6vw] font-black leading-[0.8] tracking-tighter uppercase italic text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-800">
-            DEPLOYED_LOGS
+          <h1 className="text-[12vw] md:text-[6vw] font-display font-semibold leading-[0.95] tracking-tight text-white">
+            Our Work
           </h1>
           <div className="flex items-center gap-4 mt-6">
             <div className="h-[1px] w-20 bg-purple-600" />
-            <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">
-              System_Registry_v2026.1
+            <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+              Selected software projects
             </span>
           </div>
+          <p className="mt-8 max-w-2xl text-sm text-gray-400 leading-relaxed">
+            A selection of the web applications, CRMs, and immersive experiences we&apos;ve shipped.
+            Each links to a full case study with the problem, the build, and the results.
+          </p>
         </div>
 
         {/* The Grid */}

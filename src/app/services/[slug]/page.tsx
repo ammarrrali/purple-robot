@@ -94,9 +94,9 @@ export default async function ServiceDetailPage({
         {/* Header */}
         <header className="mb-14">
           <span className="text-[10px] font-mono uppercase tracking-widest text-purple-500 block mb-4">
-            {svc.code} // SERVICE_BRIEF
+            {svc.code} · SERVICE_BRIEF
           </span>
-          <h1 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-[0.95] text-white mb-6">
+          <h1 className="text-3xl md:text-5xl font-display font-semibold tracking-tight leading-[0.95] text-white mb-6">
             {svc.title}
           </h1>
           <p className="text-sm font-mono text-gray-400 uppercase tracking-wide border-l-2 border-purple-500/30 pl-4">
@@ -115,8 +115,8 @@ export default async function ServiceDetailPage({
 
         {/* Deliverables */}
         <section className="mb-16">
-          <h2 className="text-xl md:text-2xl font-black italic uppercase tracking-tight text-white mb-8">
-            <span className="text-purple-500 mr-2">//</span>
+          <h2 className="text-xl md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
+            
             What We Deliver
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -125,7 +125,7 @@ export default async function ServiceDetailPage({
                 key={d.label}
                 className="rounded-3xl border border-white/10 bg-[#0a0a0a] p-6 hover:border-purple-500/40 transition-colors"
               >
-                <h3 className="text-sm font-black italic uppercase tracking-tight text-purple-400 mb-3">
+                <h3 className="text-sm font-display font-semibold tracking-tight text-purple-400 mb-3">
                   {d.label}
                 </h3>
                 <p className="text-xs text-gray-400 leading-relaxed">{d.description}</p>
@@ -136,8 +136,8 @@ export default async function ServiceDetailPage({
 
         {/* Process */}
         <section className="mb-16">
-          <h2 className="text-xl md:text-2xl font-black italic uppercase tracking-tight text-white mb-8">
-            <span className="text-purple-500 mr-2">//</span>
+          <h2 className="text-xl md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
+            
             Engagement Protocol
           </h2>
           <ol className="space-y-5">
@@ -154,8 +154,8 @@ export default async function ServiceDetailPage({
 
         {/* FAQs */}
         <section className="mb-16">
-          <h2 className="text-xl md:text-2xl font-black italic uppercase tracking-tight text-white mb-8">
-            <span className="text-purple-500 mr-2">//</span>
+          <h2 className="text-xl md:text-2xl font-display font-semibold tracking-tight text-white mb-8">
+            
             Frequently Asked Questions
           </h2>
           <div className="flex flex-col gap-4">
@@ -177,11 +177,11 @@ export default async function ServiceDetailPage({
         {/* CTA */}
         <div className="rounded-3xl border border-purple-500/30 bg-purple-600/5 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-black italic uppercase tracking-tight text-white mb-2">
+            <h2 className="text-2xl font-display font-semibold tracking-tight text-white mb-2">
               Scope your project
             </h2>
             <p className="text-xs font-mono text-gray-400 uppercase tracking-wider">
-              Free consultation // info@codeeee.com // +92 336 1287518
+              Free consultation · info@codeeee.com · +92 336 1287518
             </p>
           </div>
           <Link

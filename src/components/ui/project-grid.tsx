@@ -21,7 +21,7 @@ export const ProjectGrid = () => (
         className="group relative bg-white/[0.03] border border-white/5 p-8 rounded-3xl overflow-hidden hover:bg-purple-600/[0.05] hover:border-purple-500/30 transition-all duration-500"
       >
         <p.icon className="text-purple-500 mb-6 group-hover:scale-110 transition-transform" size={28} />
-        <h3 className="text-xl font-black uppercase italic mb-2 tracking-tight">{p.title}</h3>
+        <h3 className="text-xl font-semibold uppercase mb-2 tracking-tight">{p.title}</h3>
         <p className="text-[10px] font-mono text-purple-400/60 uppercase mb-4 tracking-widest">{p.tech}</p>
         <p className="text-[13px] text-gray-500 leading-relaxed font-medium">{p.desc}</p>
       </motion.div>

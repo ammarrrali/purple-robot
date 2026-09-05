@@ -12,6 +12,7 @@ const navLinks = [
   { id: "/services", label: "Services" },
   { id: "/portfolio", label: "Portfolio" },
   { id: "/about", label: "About" },
+  { id: "/careers", label: "Careers" },
   { id: "/contact", label: "Contact" },
 ];
 
@@ -30,8 +31,8 @@ export function LiquidNavBar() {
           <Terminal size={18} className="text-white relative z-10 group-hover:scale-110 transition-transform" />
         </div>
         <div className="flex flex-col text-left">
-          <span className="font-black tracking-tighter text-lg leading-none uppercase italic text-white mix-blend-difference">CODEEEE</span>
-          <span className="text-[9px] font-mono text-purple-400 uppercase tracking-widest">Architects</span>
+          <span className="font-display font-semibold tracking-tight text-xl leading-none text-white mix-blend-difference">Codeeee</span>
+          <span className="text-[9px] font-mono text-purple-400 uppercase tracking-widest">Software House</span>
         </div>
       </Link>
 
@@ -47,7 +48,7 @@ export function LiquidNavBar() {
                 key={link.id}
                 href={link.id}
                 className={cn(
-                  "relative px-6 py-2.5 text-[10px] font-black uppercase tracking-widest transition-colors duration-300 z-10",
+                  "relative px-6 py-2.5 text-[10px] font-semibold uppercase tracking-widest transition-colors duration-300 z-10",
                   isActive ? "text-white" : "text-gray-400 hover:text-white"
                 )}
               >
@@ -70,9 +71,9 @@ export function LiquidNavBar() {
       <div className="pointer-events-auto flex items-center gap-3">
         <Link
           href="/contact"
-          className="relative px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-white text-[10px] font-black rounded-full transition-all hover:scale-105 active:scale-95 uppercase italic tracking-wider group overflow-hidden hidden sm:inline-block"
+          className="relative px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-white text-[10px] font-semibold rounded-full transition-all hover:scale-105 active:scale-95 uppercase tracking-wider group overflow-hidden hidden sm:inline-block"
         >
-          <span className="relative z-10">Get_Estimate</span>
+          <span className="relative z-10">Get estimate</span>
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 via-purple-600/30 to-purple-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
         </Link>
 
@@ -106,7 +107,7 @@ export function LiquidNavBar() {
                     href={link.id}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      "px-5 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-colors",
+                      "px-5 py-4 rounded-xl text-xs font-semibold uppercase tracking-widest transition-colors",
                       isActive
                         ? "text-white bg-purple-600/80 shadow-[0_0_20px_rgba(168,85,247,0.3)]"
                         : "text-gray-400 hover:text-white hover:bg-white/5"
@@ -119,9 +120,9 @@ export function LiquidNavBar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="sm:hidden mt-2 px-5 py-4 rounded-xl text-center text-xs font-black uppercase italic tracking-wider text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                className="sm:hidden mt-2 px-5 py-4 rounded-xl text-center text-xs font-semibold uppercase tracking-wider text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
               >
-                Get_Estimate
+                Get estimate
               </Link>
             </div>
           </motion.div>

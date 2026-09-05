@@ -72,9 +72,9 @@ export default function PrivacyPolicyPage() {
 
         <header className="mb-14">
           <span className="text-[10px] font-mono uppercase tracking-widest text-purple-500 block mb-4">
-            LEGAL // LAST_UPDATED: 2026-06-11
+            LEGAL · LAST_UPDATED: 2026-06-11
           </span>
-          <h1 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-[0.95] text-white">
+          <h1 className="text-3xl md:text-5xl font-display font-semibold tracking-tight leading-[0.95] text-white">
             Privacy Policy
           </h1>
           <p className="mt-6 text-sm text-gray-400 leading-relaxed border-l-2 border-purple-500/30 pl-4">
@@ -85,8 +85,8 @@ export default function PrivacyPolicyPage() {
 
         {sections.map((s) => (
           <section key={s.heading} className="mb-12">
-            <h2 className="text-xl font-black italic uppercase tracking-tight text-white mb-5">
-              <span className="text-purple-500 mr-2">//</span>
+            <h2 className="text-xl font-display font-semibold tracking-tight text-white mb-5">
+              
               {s.heading}
             </h2>
             {s.body.map((p, i) => (

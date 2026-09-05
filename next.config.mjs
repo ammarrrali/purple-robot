@@ -1,11 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    optimizePackageImports: ['@splinetool/react-spline', 'lucide-react'],
-    workerThreads: false,
-    cpus: 1
+    // Tree-shake the icon barrel so only the icons actually used are bundled.
+    optimizePackageImports: ['lucide-react'],
   },
-  typescript: { ignoreBuildErrors: true },
 };
 
 export default nextConfig;

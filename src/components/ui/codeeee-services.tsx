@@ -42,7 +42,7 @@ export function CodeeeeServicesSection() {
   return (
     <div className="flex flex-col items-center justify-center py-20 bg-transparent">
       <div className="mb-12 text-center px-6">
-        <h2 className="text-4xl font-black italic uppercase tracking-tighter">OUR_CAPABILITIES</h2>
+        <h2 className="text-4xl font-display font-semibold tracking-tight">OUR_CAPABILITIES</h2>
         <div className="w-12 h-1 bg-purple-600 mx-auto mt-2" />
       </div>
       <div className="w-full max-w-3xl pr-20 md:pr-0">

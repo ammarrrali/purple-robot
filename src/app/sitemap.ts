@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/about`, changeFrequency: "yearly", priority: 0.6 },
     { url: `${SITE_URL}/contact`, changeFrequency: "yearly", priority: 0.7 },
+    { url: `${SITE_URL}/careers`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/privacy-policy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms-of-service`, changeFrequency: "yearly", priority: 0.3 },
   ];

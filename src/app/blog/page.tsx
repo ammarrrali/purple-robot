@@ -35,13 +35,13 @@ export default function BlogPage() {
       <div className="pt-32 pb-20 px-6 md:px-16 max-w-7xl mx-auto relative z-10">
         {/* Page Header */}
         <div className="mb-20">
-          <h1 className="text-[12vw] md:text-[6vw] font-black leading-[0.8] tracking-tighter uppercase italic text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-800">
-            INSIGHTS_LOG
+          <h1 className="text-[11vw] md:text-[5.5vw] font-display font-semibold leading-[0.95] tracking-tight text-white">
+            Software Development Insights
           </h1>
           <div className="flex items-center gap-4 mt-6">
             <div className="h-[1px] w-20 bg-purple-600" />
-            <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">
-              Field_Notes // No_Fluff
+            <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+              Guides for founders &amp; operators
             </span>
           </div>
           <p className="mt-8 max-w-2xl text-sm text-gray-400 leading-relaxed">
@@ -65,10 +65,10 @@ export default function BlogPage() {
                     <span key={t} className="text-[10px] font-mono uppercase tracking-widest">{t}</span>
                   ))}
                   <span className="text-[10px] font-mono uppercase tracking-widest text-gray-600">
-                    // {formatDate(post.date)} // {post.readMinutes}_min
+                    · {formatDate(post.date)} · {post.readMinutes} min
                   </span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-black italic uppercase tracking-tight text-white group-hover:text-purple-100 transition-colors mb-4">
+                <h2 className="text-xl md:text-2xl font-display font-semibold tracking-tight text-white group-hover:text-purple-100 transition-colors mb-4">
                   {post.title}
                 </h2>
                 <p className="text-xs text-gray-400 font-mono leading-relaxed border-l-2 border-purple-500/20 pl-4 group-hover:border-purple-500 transition-colors">

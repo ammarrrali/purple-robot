@@ -103,10 +103,10 @@ export default async function BlogPostPage({
               <span key={t} className="text-[10px] font-mono uppercase tracking-widest">{t}</span>
             ))}
             <span className="text-[10px] font-mono uppercase tracking-widest text-gray-600">
-              // {formatDate(post.date)} // {post.readMinutes}_min_read
+              · {formatDate(post.date)} · {post.readMinutes} min read
             </span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter leading-[1] text-white">
+          <h1 className="text-3xl md:text-4xl font-display font-semibold tracking-tight leading-[1] text-white">
             {post.title}
           </h1>
         </header>
@@ -114,8 +114,8 @@ export default async function BlogPostPage({
         {/* Body */}
         {post.sections.map((section) => (
           <section key={section.heading} className="mb-12">
-            <h2 className="text-xl md:text-2xl font-black italic uppercase tracking-tight text-white mb-6">
-              <span className="text-purple-500 mr-2">//</span>
+            <h2 className="text-xl md:text-2xl font-display font-semibold tracking-tight text-white mb-6">
+              
               {section.heading}
             </h2>
             {section.paragraphs.map((p, i) => (
@@ -133,7 +133,7 @@ export default async function BlogPostPage({
               <span className="text-[10px] font-mono uppercase tracking-widest text-purple-500 block mb-2">
                 Related_Capability
               </span>
-              <h2 className="text-xl font-black italic uppercase tracking-tight text-white">
+              <h2 className="text-xl font-display font-semibold tracking-tight text-white">
                 {relatedService.title}
               </h2>
             </div>

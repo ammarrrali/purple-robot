@@ -100,7 +100,7 @@ export default function RadialOrbitalTimeline() {
                         {activeItem.status}
                      </Badge>
                   </div>
-                  <CardTitle className="text-2xl font-black uppercase italic tracking-tighter">{activeItem.title}</CardTitle>
+                  <CardTitle className="text-2xl font-display font-semibold tracking-tight">{activeItem.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6 pt-2">
                   <p className="text-xs text-gray-400 font-mono leading-relaxed">{`>> ${activeItem.content}`}</p>
