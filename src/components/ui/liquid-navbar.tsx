@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { id: "/", label: "Home" }, // Changed 'about' to '/' for Home if you want, or keep 'about' for the page
   { id: "/services", label: "Services" },
-  { id: "/portfolio", label: "Portfolio" },
+  { id: "/case-studies", label: "Work" },
+  { id: "/blog", label: "Insights" },
   { id: "/about", label: "About" },
   { id: "/careers", label: "Careers" },
   { id: "/contact", label: "Contact" },

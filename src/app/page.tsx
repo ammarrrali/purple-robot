@@ -96,7 +96,7 @@ export default function Home() {
     })),
   };
 
-  const featuredCases = caseStudies.slice(0, 3);
+  const featuredCases = caseStudies;
 
   return (
     <main className="bg-[#030303] text-white selection:bg-purple-600/40">
@@ -125,13 +125,13 @@ export default function Home() {
             <p className="text-[10px] md:text-xs font-mono uppercase tracking-[0.4em] text-purple-400 mb-6">
               Software House · Karachi → Worldwide
             </p>
-            <h1 className="font-hero text-5xl sm:text-7xl lg:text-[110px] font-black italic uppercase leading-[0.85] tracking-tighter mb-6">
+            <p aria-hidden className="font-hero text-5xl sm:text-7xl lg:text-[110px] font-black italic uppercase leading-[0.85] tracking-tighter mb-6">
               CODEEEE <span className="inline-block pr-[0.12em] -mr-[0.12em] text-transparent bg-clip-text bg-gradient-to-t from-gray-600 to-white">LABS</span>
-            </h1>
-            <p className="text-base md:text-xl text-gray-300 leading-relaxed max-w-2xl mb-8">
+            </p>
+            <h1 className="text-base md:text-xl font-normal text-gray-300 leading-relaxed max-w-2xl mb-8">
               We build <strong className="text-white font-semibold">custom web applications, AI automation, mobile apps, and CRM systems</strong> for
               startups and businesses in the US, UK, Canada, and Europe — senior engineering from Karachi at offshore rates.
-            </p>
+            </h1>
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
@@ -304,7 +304,7 @@ export default function Home() {
             </Link>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {featuredCases.map((c) => (
               <Link
                 key={c.slug}
@@ -315,7 +315,7 @@ export default function Home() {
                   <span className="text-[10px] font-mono uppercase tracking-widest text-purple-400">{c.category}</span>
                   <span className="text-[10px] font-mono uppercase tracking-widest text-gray-600">{c.region}</span>
                 </div>
-                <h3 className="text-base font-bold text-white leading-snug mb-3">{c.title.replace(/_/g, " ")}</h3>
+                <h3 className="text-base font-bold text-white leading-snug mb-3">{c.title}</h3>
                 <p className="text-xs text-gray-400 leading-relaxed">{c.summary}</p>
               </Link>
             ))}

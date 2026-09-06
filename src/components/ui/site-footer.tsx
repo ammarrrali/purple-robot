@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Terminal, Mail, Smartphone, Instagram, ArrowUpRight } from 'lucide-react';
 
 const footerLinks = [
-  { title: "Sitemap", items: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Case Studies", href: "/case-studies" }, { label: "Insights", href: "/blog" }, { label: "Careers", href: "/careers" }, { label: "Contact", href: "/contact" }] },
+  { title: "Sitemap", items: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Case Studies", href: "/case-studies" }, { label: "Insights", href: "/blog" }, { label: "Careers", href: "/careers" }, { label: "Contact", href: "/contact" }] },
   { title: "Services", items: [{ label: "AI Automation", href: "/services/ai-automation" }, { label: "Web Applications", href: "/services/web-applications" }, { label: "Mobile Apps", href: "/services/mobile-apps" }, { label: "Custom CRMs", href: "/services/custom-crm" }] },
   { title: "Connect", items: [{ label: "Instagram", href: "https://instagram.com/codeeeelabs" }, { label: "info@codeeee.com", href: "mailto:info@codeeee.com" }, { label: "+92 336 1287518", href: "tel:+923361287518" }] },
 ];

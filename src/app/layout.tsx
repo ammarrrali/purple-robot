@@ -40,13 +40,13 @@ const SITE_URL = "https://codeeee.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Codeeee Labs — Software House in Karachi | Web Apps, AI & Mobile Development",
+    default: "Custom Software Development for US, UK & European Companies | Codeeee Labs",
     template: "%s | Codeeee Labs",
   },
   description:
     "Codeeee Labs is a software house building custom web applications, AI automation, mobile apps, and CRM systems for clients in the US, UK, Canada, Europe, and worldwide. Senior engineering from Karachi at offshore rates.",
   keywords: [
-    "software house Karachi",
+    "custom software development company",
     "offshore software development company",
     "outsource software development Pakistan",
     "web app development agency",
@@ -62,16 +62,16 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Codeeee Labs",
-    title: "Codeeee Labs — Software House in Karachi",
+    title: "Custom Software Development for US, UK & European Companies",
     description:
-      "Custom web applications, AI automation, mobile apps, and CRM systems. High-fidelity digital engineering from Karachi, Pakistan.",
+      "Custom web applications, AI automation, mobile apps, and CRM systems. Senior engineering at offshore rates — you own the code from the first commit.",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Codeeee Labs — Software House in Karachi",
+    title: "Custom Software Development for US, UK & European Companies",
     description:
-      "Custom web applications, AI automation, mobile apps, and CRM systems. High-fidelity digital engineering from Karachi, Pakistan.",
+      "Custom web applications, AI automation, mobile apps, and CRM systems. Senior engineering at offshore rates — you own the code from the first commit.",
   },
   robots: {
     index: true,
@@ -113,14 +113,18 @@ const organizationSchema = {
     { "@type": "Country", name: "Australia" },
     { "@type": "Country", name: "Pakistan" },
   ],
+  // Entity consistency: every profile Codeeee owns should be listed here.
+  // Add each URL as the profile is claimed — LinkedIn, GitHub, Clutch,
+  // GoodFirms and Crunchbase are the ones that matter for a software house.
   sameAs: ["https://instagram.com/codeeeelabs"],
   knowsAbout: [
-    "Web Application Development",
-    "AI Automation",
-    "Mobile App Development",
+    "Custom ERP Systems",
+    "Freight Forwarding Software",
+    "Road Transport and Fleet Software",
     "Custom CRM Systems",
-    "SaaS Development",
-    "Progressive Web Apps",
+    "Web Application Development",
+    "Mobile App Development",
+    "AI Automation",
   ],
 };
 

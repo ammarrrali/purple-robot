@@ -58,7 +58,7 @@ export default async function CaseStudyPage({
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Case Studies", item: `${SITE_URL}/case-studies` },
-      { "@type": "ListItem", position: 3, name: cs.title.split(" — ")[0], item: `${SITE_URL}/case-studies/${cs.slug}` },
+      { "@type": "ListItem", position: 3, name: cs.title, item: `${SITE_URL}/case-studies/${cs.slug}` },
     ],
   };
 
@@ -83,13 +83,14 @@ export default async function CaseStudyPage({
           <span className="mx-2 text-purple-600">/</span>
           <Link href="/case-studies" className="hover:text-white transition-colors">Case_Studies</Link>
           <span className="mx-2 text-purple-600">/</span>
-          <span className="text-gray-400">{cs.title.split(" — ")[0]}</span>
+          <span className="text-gray-400">{cs.code}</span>
         </nav>
 
         {/* Header */}
         <header className="mb-16">
           <div className="flex items-center gap-3 text-purple-500 mb-4">
-            <span className="text-[10px] font-mono uppercase tracking-widest">{cs.category}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest">{cs.code}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-gray-600">{cs.category}</span>
             <span className="text-[10px] font-mono uppercase tracking-widest text-gray-600">{cs.region}</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-display font-semibold tracking-tight leading-[0.95] text-white mb-6">

@@ -5,21 +5,53 @@ import { LiquidNavBar } from "@/components/ui/liquid-navbar";
 import { caseStudies } from "@/content/case-studies";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Software Projects for US, UK, Canada & European Clients",
+  title: "Case Studies — Custom ERP, CRM & Logistics Software",
   description:
-    "Detailed case studies from Codeeee Labs: SaaS platforms, logistics CRMs, WebGL experiences, and progressive web apps built for clients in the US, UK, Canada, and Europe.",
+    "How Codeeee Labs builds custom operational software: a freight forwarding ERP with multi-reference shipment search, and a road transport ERP with automated truck assignment and job intake.",
   alternates: { canonical: "/case-studies" },
   openGraph: {
     title: "Case Studies — Codeeee Labs",
     description:
-      "SaaS platforms, logistics CRMs, WebGL experiences, and PWAs built for international clients.",
+      "Custom ERP and CRM systems for freight forwarding and road transport operators.",
     url: "/case-studies",
   },
+};
+
+const SITE_URL = "https://codeeee.com";
+
+// Hub pages shipped without breadcrumb or list markup.
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Case Studies", item: `${SITE_URL}/case-studies` },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Case Studies",
+  itemListElement: caseStudies.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.title,
+    url: `${SITE_URL}/case-studies/${c.slug}`,
+  })),
 };
 
 export default function CaseStudiesPage() {
   return (
     <main className="min-h-screen bg-[#030303] text-white selection:bg-purple-600/40 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <LiquidNavBar />
 
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
@@ -33,13 +65,14 @@ export default function CaseStudiesPage() {
           <div className="flex items-center gap-4 mt-6">
             <div className="h-[1px] w-20 bg-purple-600" />
             <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">
-              Projects for US, UK, Canada &amp; EU clients
+              Custom ERP &amp; logistics systems
             </span>
           </div>
           <p className="mt-8 max-w-2xl text-sm text-gray-400 leading-relaxed">
-            Detailed write-ups of how we engineer software for clients across the United
-            States, United Kingdom, Canada, Europe, and the Gulf — what the problem was,
-            what we built, and what it changed.
+            Detailed write-ups of operational software we have built — what the problem
+            was, how the system was designed, and why a custom build was the right answer.
+            Logistics is where the deepest work sits: a freight forwarding ERP and a road
+            transport ERP, both replacing spreadsheets and dispatcher memory with software.
           </p>
         </div>
 

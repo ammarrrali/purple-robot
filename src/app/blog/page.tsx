@@ -17,6 +17,30 @@ export const metadata: Metadata = {
   },
 };
 
+const SITE_URL = "https://codeeee.com";
+
+// Hub pages shipped without breadcrumb or list markup.
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Insights", item: `${SITE_URL}/blog` },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Insights",
+  itemListElement: blogPosts.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.title,
+    url: `${SITE_URL}/blog/${p.slug}`,
+  })),
+};
+
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
     year: "numeric",
@@ -28,6 +52,14 @@ function formatDate(iso: string) {
 export default function BlogPage() {
   return (
     <main className="min-h-screen bg-[#030303] text-white selection:bg-purple-600/40 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <LiquidNavBar />
 
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />

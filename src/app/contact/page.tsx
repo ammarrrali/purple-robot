@@ -3,11 +3,34 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LiquidNavBar } from '@/components/ui/liquid-navbar';
-import { Mail, Smartphone, Instagram, Copy, Terminal, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Smartphone, Instagram, Copy, Terminal, Send, CheckCircle2, MessageCircle, ShieldCheck, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { track, leadSource, type LeadEvent } from '@/lib/track';
+
+// Set NEXT_PUBLIC_BOOKING_URL (Cal.com / Calendly) to switch on the
+// "book a call" path. Until it is set, the button is simply not rendered —
+// better no button than a broken one.
+const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL;
+
+// Prefilled so the visitor does not have to compose an opener.
+const WHATSAPP_URL =
+  'https://wa.me/923361287518?text=' +
+  encodeURIComponent("Hi Codeeee Labs — I'd like to discuss a software project.");
 
 // --- CONTACT DATA ---
-const contactMethods = [
+const contactMethods: {
+  id: string; label: string; value: string; action: string;
+  icon: typeof Mail; status: string; event: LeadEvent;
+}[] = [
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    value: "Message us now",
+    action: WHATSAPP_URL,
+    icon: MessageCircle,
+    status: "Fastest",
+    event: "contact_whatsapp",
+  },
   {
     id: "phone",
     label: "Phone",
@@ -15,6 +38,7 @@ const contactMethods = [
     action: "tel:+923361287518",
     icon: Smartphone,
     status: "Active",
+    event: "contact_phone",
   },
   {
     id: "email",
@@ -23,6 +47,7 @@ const contactMethods = [
     action: "mailto:info@codeeee.com",
     icon: Mail,
     status: "Idle",
+    event: "contact_email",
   },
   {
     id: "insta",
@@ -31,6 +56,7 @@ const contactMethods = [
     action: "https://instagram.com/codeeeelabs",
     icon: Instagram,
     status: "Live",
+    event: "contact_email",
   },
 ];
 
@@ -60,10 +86,11 @@ export default function ContactPage() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, ...leadSource() }),
       });
       if (!res.ok) throw new Error('send failed');
       setSendState('sent');
+      track('generate_lead', leadSource());
     } catch {
       // Backend unavailable or errored — show a clear error and offer the
       // visitor's own mail client so the message is never lost.
@@ -96,6 +123,20 @@ export default function ContactPage() {
             </p>
           </motion.div>
 
+          {BOOKING_URL && (
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track('booking_start', leadSource())}
+              className="mb-6 flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-purple-600 hover:bg-purple-500 transition-colors"
+            >
+              <span className="text-xs font-semibold tracking-[0.2em] uppercase">
+                Book a 30-minute call
+              </span>
+            </a>
+          )}
+
           <div className="flex flex-col gap-4">
             {contactMethods.map((method, i) => (
               <motion.div
@@ -116,7 +157,14 @@ export default function ContactPage() {
                     <span className="text-[9px] font-mono text-gray-500 uppercase tracking-widest block mb-1">
                       {method.label} · <span className={cn("text-green-500", method.status === "Idle" && "text-yellow-500")}>{method.status}</span>
                     </span>
-                    <a href={method.action} className="text-lg font-bold font-mono text-white group-hover:text-purple-200 transition-colors">
+                    <a
+                      href={method.action}
+                      onClick={() => track(method.event, leadSource())}
+                      {...(method.action.startsWith('http')
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                      className="text-lg font-bold font-mono text-white group-hover:text-purple-200 transition-colors"
+                    >
                       {method.value}
                     </a>
                   </div>
@@ -130,6 +178,26 @@ export default function ContactPage() {
                 </button>
               </motion.div>
             ))}
+          </div>
+
+          {/* What an international buyer is actually checking before they write */}
+          <div className="mt-10 border-t border-white/10 pt-8 flex flex-col gap-5">
+            <div className="flex items-start gap-3">
+              <Clock size={16} className="text-purple-400 mt-0.5 shrink-0" />
+              <p className="text-xs text-gray-400 leading-relaxed">
+                <span className="text-white font-semibold">We reply within one business day.</span>{' '}
+                Our team works UTC+5, which overlaps the UK and European workday by four to six
+                hours and US East Coast mornings by two to three.
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <ShieldCheck size={16} className="text-purple-400 mt-0.5 shrink-0" />
+              <p className="text-xs text-gray-400 leading-relaxed">
+                <span className="text-white font-semibold">You own the code and the IP</span> from
+                the first commit — your repository, your infrastructure, no proprietary framework
+                lock-in. NDA available before the first call.
+              </p>
+            </div>
           </div>
         </div>
 

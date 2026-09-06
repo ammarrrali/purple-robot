@@ -9,7 +9,13 @@ import { NextResponse } from "next/server";
 const TO_ADDRESS = "info@codeeee.com";
 
 export async function POST(req: Request) {
-  let body: { name?: string; email?: string; message?: string };
+  let body: {
+    name?: string;
+    email?: string;
+    message?: string;
+    landingPage?: string;
+    referrer?: string;
+  };
   try {
     body = await req.json();
   } catch {
@@ -19,6 +25,10 @@ export async function POST(req: Request) {
   const name = (body.name ?? "").toString().trim().slice(0, 200);
   const email = (body.email ?? "").toString().trim().slice(0, 200);
   const message = (body.message ?? "").toString().trim().slice(0, 5000);
+  // Lead source travels with the enquiry so organic leads can be traced back
+  // to the page — and therefore the query — that produced them.
+  const landingPage = (body.landingPage ?? "").toString().trim().slice(0, 300);
+  const referrer = (body.referrer ?? "").toString().trim().slice(0, 300);
 
   if (!message) {
     return NextResponse.json({ error: "Message is required" }, { status: 400 });
@@ -40,7 +50,9 @@ export async function POST(req: Request) {
       to: [TO_ADDRESS],
       reply_to: email || undefined,
       subject: `Project inquiry from ${name || "website visitor"}`,
-      text: `Name: ${name || "—"}\nEmail: ${email || "—"}\n\n${message}`,
+      text:
+        `Name: ${name || "—"}\nEmail: ${email || "—"}\n` +
+        `Landing page: ${landingPage || "—"}\nReferrer: ${referrer || "—"}\n\n${message}`,
     }),
   });
 
