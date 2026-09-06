@@ -5,6 +5,30 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react'],
   },
 
+  // Hostinger's CDN does not purge on deploy, and Next's default header for a
+  // statically prerendered page is `s-maxage=31536000` — a one-year edge cache.
+  // The result observed on 2026-09-06: edge nodes served a mix of the old and
+  // new build for hours after a push, so a deploy could not be relied on to
+  // reach visitors or Googlebot.
+  //
+  // Five minutes at the edge with a day of stale-while-revalidate keeps the
+  // CDN doing useful work while letting a deploy propagate on its own. Content
+  // -hashed assets under /_next/static keep their immutable one-year cache —
+  // Next sets that itself and it cannot be overridden here.
+  async headers() {
+    return [
+      {
+        source: '/:path((?!api/|_next/).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // One canonical host. www and apex both served 200 with identical HTML,
