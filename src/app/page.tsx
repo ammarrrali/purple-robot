@@ -115,7 +115,7 @@ export default function Home() {
         </div>
 
         {/* SVG robot everywhere; a real WebGL coding robot on machines that can spare it */}
-        <HeroBot3D className="absolute z-[2] pointer-events-none right-1/2 translate-x-1/2 sm:right-6 sm:translate-x-0 md:right-10 xl:right-20 top-[23%] sm:top-[34%] xl:top-[46%] -translate-y-1/2 w-[62vw] max-w-[230px] sm:max-w-[340px] md:max-w-[430px] xl:max-w-[540px] opacity-80 sm:opacity-100 [@media(max-height:640px)]:hidden" />
+        <HeroBot3D className="absolute z-[2] pointer-events-none right-1/2 translate-x-1/2 sm:right-6 sm:translate-x-0 md:right-10 xl:right-20 top-[23%] sm:top-[34%] xl:top-[46%] -translate-y-1/2 w-[62vw] max-w-[230px] sm:max-w-[340px] md:max-w-[430px] xl:max-w-[540px] opacity-80 sm:opacity-100 [@media(max-height:480px)]:hidden" />
 
         <div className="absolute inset-0 border border-white/5 pointer-events-none z-[5] m-4 md:m-6" aria-hidden />
 
