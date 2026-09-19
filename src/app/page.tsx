@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, ShieldCheck, Clock, Code2, Zap, Ship, Truck, Smartphone, Globe2 } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Clock, Code2, Zap, Ship, Truck, Smartphone, Globe2, Sparkles, Search } from "lucide-react";
 import { LiquidNavBar } from "@/components/ui/liquid-navbar";
 import { HeroBot3D } from "@/components/ui/hero-bot-3d";
 import { services } from "@/content/services";
@@ -161,6 +161,50 @@ export default function Home() {
               <p className="text-[11px] font-mono uppercase tracking-wider text-gray-500">{s.sub}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ================= OFFER BAND ================= */}
+      <section className="relative py-20 md:py-28 px-6 md:px-16 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(147,51,234,0.12),transparent_70%)] pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="rounded-3xl border border-purple-500/30 bg-gradient-to-b from-purple-500/[0.08] to-transparent p-8 md:p-14">
+            <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.3em] text-purple-300 border border-purple-500/30 bg-purple-500/10 rounded-full px-4 py-1.5 mb-8">
+              <Sparkles size={12} /> Risk-free offer
+            </span>
+            <h2 className="text-3xl md:text-5xl font-display font-semibold tracking-tight leading-[0.98] mb-5 max-w-3xl">
+              We build it first. You pay only if you love it.
+            </h2>
+            <p className="text-sm md:text-base text-gray-300 leading-relaxed max-w-2xl mb-10">
+              Our senior team designs and builds your homepage or a working prototype up front — free.
+              Not right for you? Walk away, owe nothing. Already have a site? Get a free, no-obligation audit instead.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 max-w-3xl">
+              <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/30 p-5">
+                <Sparkles size={18} className="text-purple-400 mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">See it before you pay</p>
+                  <p className="text-xs text-gray-400 leading-relaxed">Free homepage or prototype. No deposit, no contract to start.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/30 p-5">
+                <Search size={18} className="text-purple-400 mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Free website audit</p>
+                  <p className="text-xs text-gray-400 leading-relaxed">Send your URL, get an honest teardown of what&apos;s costing you customers.</p>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href="/offer"
+              className="group inline-flex items-center gap-3 px-7 py-4 rounded-full bg-purple-600 hover:bg-purple-500 transition-colors"
+            >
+              <span className="text-xs font-semibold tracking-[0.2em] uppercase">Claim your free build</span>
+              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
 

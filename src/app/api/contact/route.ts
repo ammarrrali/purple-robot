@@ -15,6 +15,8 @@ export async function POST(req: Request) {
     message?: string;
     landingPage?: string;
     referrer?: string;
+    offer?: string;
+    website?: string;
   };
   try {
     body = await req.json();
@@ -29,6 +31,10 @@ export async function POST(req: Request) {
   // to the page — and therefore the query — that produced them.
   const landingPage = (body.landingPage ?? "").toString().trim().slice(0, 300);
   const referrer = (body.referrer ?? "").toString().trim().slice(0, 300);
+  // Which offer produced this lead (e.g. the "see it before you pay" intake),
+  // plus the visitor's current website when they asked for a free audit.
+  const offer = (body.offer ?? "").toString().trim().slice(0, 200);
+  const website = (body.website ?? "").toString().trim().slice(0, 300);
 
   if (!message) {
     return NextResponse.json({ error: "Message is required" }, { status: 400 });
@@ -49,9 +55,12 @@ export async function POST(req: Request) {
       from: process.env.CONTACT_FROM ?? "Codeeee Website <onboarding@resend.dev>",
       to: [TO_ADDRESS],
       reply_to: email || undefined,
-      subject: `Project inquiry from ${name || "website visitor"}`,
+      subject: offer
+        ? `${offer} — lead from ${name || "website visitor"}`
+        : `Project inquiry from ${name || "website visitor"}`,
       text:
         `Name: ${name || "—"}\nEmail: ${email || "—"}\n` +
+        `Offer: ${offer || "—"}\nCurrent website: ${website || "—"}\n` +
         `Landing page: ${landingPage || "—"}\nReferrer: ${referrer || "—"}\n\n${message}`,
     }),
   });
