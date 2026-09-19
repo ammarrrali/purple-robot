@@ -42,7 +42,6 @@ function canRun3D(): boolean {
     connection?: { saveData?: boolean };
   };
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
   // Touch devices: thermals and fill-rate are the risk, and the SVG already
   // looks right at those sizes.
   if (window.matchMedia('(hover: none)').matches) return false;
